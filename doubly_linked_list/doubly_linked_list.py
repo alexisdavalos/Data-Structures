@@ -124,7 +124,9 @@ class DoublyLinkedList:
 
         #VS
 
-        #checks if the node is the head
+
+
+        # checks if the node is the head
         # if node is self.head:
         #     return
         # self.add_to_head(node.value)
