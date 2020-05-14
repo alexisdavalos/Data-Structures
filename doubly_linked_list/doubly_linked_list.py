@@ -110,27 +110,27 @@ class DoublyLinkedList:
     def move_to_front(self, node):
 
         # Question For Tim: What's wrong with my solution?
-        
-        # check if node is the head
-        if node is self.head:
-            return
-        else:
-            #point node's next to current head
-            node.next = self.head
-            #point head's current prev to the node
-            self.head.prev = node
-            #set the list's head as the new node
-            self.head = node
+        # Answer: I was not handling the pointer change of the surrounding nodes
+        # the delete method (line 133) handles this metadata 
+
+        # # check if node is the head
+        # if node is self.head:
+        #     return
+        # else:
+        #     #point node's next to current head
+        #     node.next = self.head
+        #     #point head's current prev to the node
+        #     self.head.prev = node
+        #     #set the list's head as the new node
+        #     self.head = node
 
         #VS
 
-
-
         # checks if the node is the head
-        # if node is self.head:
-        #     return
-        # self.add_to_head(node.value)
-        # self.delete(node)
+        if node is self.head:
+            return
+        self.add_to_head(node.value)
+        self.delete(node)
         
 
     """Removes the input node from its current spot in the 
@@ -140,6 +140,20 @@ class DoublyLinkedList:
             return
         self.add_to_tail(node.value)
         self.delete(node)
+
+        # Why doesnt this work?
+        # check if node is the head
+        # if node is self.tail:
+        #     return
+        # else:
+        #     #point node's prev to current tail
+        #     node.prev = self.tail
+        #     #point node's next to None
+        #     node.next = None
+        #     #point tail's current next to the node
+        #     self.tail.next = node
+        #     #set the list's tail as the new node
+        #     self.tail = node
 
     """Removes a node from the list and handles cases where
     the node was the head or the tail"""
