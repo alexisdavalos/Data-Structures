@@ -72,6 +72,7 @@ class BinarySearchTree:
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
+        #DFS search 
         # node = root of tree
         if not node:
             return
