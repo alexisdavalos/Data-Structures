@@ -6,7 +6,7 @@ class Node:
         self.next = next
 
     def __repr__(self):
-        return f'Node({self.value})'
+        return f'Node({self.value})->'
 
 
     def get_value(self):
@@ -33,7 +33,7 @@ class LinkedList:
             ll.append(cur)
             cur = cur.next
 
-        return f'{[node for node in ll]}'
+        return f'HEAD: {self.head}{[node for node in ll if node != self.head and node != self.tail]} Tail: {self.tail}'
 
     # O(1)
     def add_to_head(self, value):
@@ -134,16 +134,12 @@ class LinkedList:
 
 ll = LinkedList()
 print(ll)
-ll.add_to_tail(10)
+
+
+for i in range(15):
+    ll.add_to_tail(i)
+
 print(ll)
-ll.add_to_tail(20)
-print(f'removing head: {ll.remove_head()}')
-print(ll)
-print(f'removing head: {ll.remove_head()}')
-print(ll)
-print(f'current head: {ll.head}')
-print(f'current tail: {ll.tail}')
-ll.add_to_tail(10)  
 
 
 
