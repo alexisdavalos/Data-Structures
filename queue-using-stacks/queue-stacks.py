@@ -7,7 +7,7 @@ class Stack:
     
     def pop(self):
         el = self.storage[0]
-        self.storage.remove(el)
+        self.storage.remove(self.storage[0])
         return el
     
     def size(self):
@@ -19,42 +19,56 @@ class Stack:
         else:
             return None
 
-class Queue:
+class MyQueue:
+
     def __init__(self):
         """
         Initialize your data structure here.
         """
+        # push
         self.s1 = Stack()
+        # pop
         self.s2 = Stack()
 
-    def push(self, x: int):
+    def push(self, x: int) -> None:
         """
         Push element x to the back of queue.
         """
         self.s1.push(x)
 
-    def pop(self):
+    def pop(self) -> int:
         """
         Removes the element from in front of queue and returns that element.
         """
-        if self.s2.size() <= 0:
+        if self.s2.size() == 0:
             # move elements from s1 to s2
             for _ in range(self.s1.size()):
                 #populates s2 with s1 in reverse order
                 self.s2.push(self.s1.pop())
             
-        else:
-            return self.s2.pop()
+            el = self.s2.pop()
+            for _ in range(self.s2.size()):
+                # repopulate the push stack and re-reverse the order
+                self.s1.push(self.s2.pop())
+            # return the top of pop stack
+            return el
         
         
-    def peek(self):
+        
+    def peek(self) -> int:
         """
         Get the front element.
         """
-        return self.s2.peek()
+        # check if pop is empty
+        if self.s2.size() == 0:
+            # peek the push stack
+            return self.s1.peek()
+        # otherwise peek the pop stack
+        else:
+            return self.s2.peek()
             
 
-    def empty(self):
+    def empty(self) -> bool:
         """
         Returns whether the queue is empty.
         """
@@ -66,11 +80,13 @@ class Queue:
         
 
 
-
-# Your MyQueue object will be instantiated and called as such:
-obj = Queue()
+# Driver Code
+obj = MyQueue()
 obj.push(1)
 obj.push(2)
+print(obj.pop())
+obj.push(3)
+obj.push(4)
 print(obj.pop())
 print(obj.peek())
 print(obj.empty())
