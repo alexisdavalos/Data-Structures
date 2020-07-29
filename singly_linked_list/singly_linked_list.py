@@ -33,7 +33,7 @@ class LinkedList:
             ll.append(cur)
             cur = cur.next
 
-        return f'HEAD: {self.head}{[node for node in ll if node != self.head and node != self.tail]} Tail: {self.tail}'
+        return f'[HEAD]:{self.head}{[node for node in ll if node != self.head or node != self.tail]} [TAIL]:{self.tail}'
 
     # O(1)
     def add_to_head(self, value):
@@ -135,9 +135,15 @@ class LinkedList:
 ll = LinkedList()
 print(ll)
 
+ll.add_to_head(1)
+ll.add_to_head(2)
+ll.add_to_head(3)
+ll.add_to_head(4)
+ll.add_to_head(5)
+ll.add_to_head(1)
 
-for i in range(15):
-    ll.add_to_tail(i)
+
+
 
 print(ll)
 
